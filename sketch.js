@@ -56,6 +56,6 @@ if (window.micEnabled) {
   let x = (width - scaledWidth) / 2;
   let y = (height - scaledHeight) / 2;
 
-  image(walkS, x, y, scaledWidth, scaledHeight);
+  image(walkL, x, y, scaledWidth, scaledHeight);
     }
 }
