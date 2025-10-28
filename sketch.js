@@ -22,7 +22,7 @@ function setup() {
 
   createCanvas(canvasWidth, canvasHeight);
 
-  enableGyroTap('Tap to enable motion');
+  enableMicTap('Tap to enable microphone');
 
   background(50);
 }
@@ -30,9 +30,9 @@ function setup() {
 function draw() {
   background(0, 0, 240);
 
-  if (window.sensorsEnabled){
-    let tilt = rotationY
-  }
+if (window.micEnabled) {
+    let level = mic.getLevel();
+    let size = map(level, 0, 1, 10, 200);
 
   let scaleX = width / walkS.width;
   let scaleY = height / walkS.height;
@@ -45,4 +45,17 @@ function draw() {
   let y = (height - scaledHeight) / 2;
 
   image(walkS, x, y, scaledWidth, scaledHeight);
+    }else{
+    let scaleX = width / walkL.width;
+  let scaleY = height / walkL.height;
+  let scale = max(scaleX, scaleY);
+
+
+  let scaledWidth = walkL.width * scale;
+  let scaledHeight = walkL.height * scale;
+  let x = (width - scaledWidth) / 2;
+  let y = (height - scaledHeight) / 2;
+
+  image(walkS, x, y, scaledWidth, scaledHeight);
+    }
 }
