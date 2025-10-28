@@ -1,6 +1,7 @@
 let walkL;
 let walkR;
 let walkS;
+let mic;
 
 function preload() {
   walkL = loadImage('walking left.gif'); 
@@ -24,17 +25,15 @@ function setup() {
 
   enableMicTap('Tap to enable microphone');
 
+  mic = new p5.AudioIn();
+
   background(50);
 }
 
 function draw() {
   background(0, 0, 240);
 
-if (window.micEnabled) {
-    let level = mic.getLevel();
-    let size = map(level, 0, 1, 10, 200);
-
-  let scaleX = width / walkS.width;
+    let scaleX = width / walkS.width;
   let scaleY = height / walkS.height;
   let scale = max(scaleX, scaleY);
 
@@ -45,17 +44,13 @@ if (window.micEnabled) {
   let y = (height - scaledHeight) / 2;
 
   image(walkS, x, y, scaledWidth, scaledHeight);
-    }else{
-    let scaleX = width / walkL.width;
-  let scaleY = height / walkL.height;
-  let scale = max(scaleX, scaleY);
 
+if (window.micEnabled) {
+    let level = mic.getLevel();
+    let size = map(level, 0, 1, 10, 200);
 
-  let scaledWidth = walkL.width * scale;
-  let scaledHeight = walkL.height * scale;
-  let x = (width - scaledWidth) / 2;
-  let y = (height - scaledHeight) / 2;
-
-  image(walkL, x, y, scaledWidth, scaledHeight);
+    if (level > 0.1){
+        image(walkL, x, y, scaledWidth, scaledHeight);
     }
+}
 }
