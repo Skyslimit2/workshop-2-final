@@ -1,11 +1,9 @@
 let walkL;
-let walkR;
 let walkS;
 let mic;
 
 function preload() {
-  walkL = loadImage('walking left.gif'); 
-  walkR = loadImage('walking right.gif');
+  walkL = loadImage('run.gif'); 
   walkS = loadImage('walking straight.gif');
 }
 
@@ -49,7 +47,7 @@ if (window.micEnabled) {
     let level = mic.getLevel();
     let size = map(level, 0, 1, 10, 200);
 
-    if (level > 0.1){
+    if (level > 0.01){
         image(walkL, x, y, scaledWidth, scaledHeight);
     }
 }
